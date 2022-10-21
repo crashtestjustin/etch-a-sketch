@@ -1,0 +1,20 @@
+
+.grid-holder {
+    display: grid;
+    grid-template-columns: repeat(16, 1fr);
+    grid-template-rows: repeat(16, 1fr);
+    height: 800px;
+    width: 800px;
+}
+
+.grid-block {
+    border: 1px solid black;
+    transition: ease 4s all;
+    
+}
+
+.grid-block:hover {
+    background-color: lightcoral;
+    transition: ease 0.0001s all;
+    
+}
