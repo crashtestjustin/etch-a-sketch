@@ -51,9 +51,6 @@ body {
     height: 25px;
 }
 
-.container {
-}
-
 .grid-holder {
     display: grid;
     grid-template-columns: repeat(16, 1fr);
