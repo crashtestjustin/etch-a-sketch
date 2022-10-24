@@ -1,3 +1,5 @@
+gridSize = 100;
+
 const container = document.querySelector('#container');
 const activateSizeChange = document.querySelector('.grid-size-change');
 const applySizeChange = document.querySelector('.activate-grid-size');
