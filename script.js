@@ -30,8 +30,7 @@ for (i = 0; i < size; i++) {
 //run setupgrid with new value
 //clear value from input
 
- function updateGridSize () {
-        console.log(newNumber);    
+ function updateGridSize () {   
     //gridHolder.innerHTML = '';
         //setupGrid(gridSize);
 }
@@ -56,9 +55,15 @@ applySizeChange.addEventListener ('click', e => {
         inputSizeChange.toggleAttribute('disabled');
         inputSizeChange.value = '';
 
+    } else if (newNumber < 1) {
+        inputRejection.textContent = "Please select a number greater than 0"
+        applySizeChange.toggleAttribute('disabled');
+        inputSizeChange.toggleAttribute('disabled');
+        inputSizeChange.value = '';
+
     } else {
-    // console.log(newNumber);
-    updateGridSize(newNumber);
+    console.log(newNumber);
+    //updateGridSize(newNumber);
     applySizeChange.toggleAttribute('disabled');
     inputSizeChange.toggleAttribute('disabled');
     inputSizeChange.value = '';
