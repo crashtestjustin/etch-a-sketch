@@ -25,14 +25,9 @@ for (i = 0; i < size; i++) {
 }
 }
 
-//take value from inputsizechange
-//set new value as gridSize variable
-//run setupgrid with new value
-//clear value from input
-
- function updateGridSize () {   
-    //gridHolder.innerHTML = '';
-        //setupGrid(gridSize);
+ function updateGridSize (newSize) {   
+    gridHolder.innerHTML = '';
+    setupGrid(newSize);
 }
 
 activateSizeChange.addEventListener ('click', e => {
@@ -62,8 +57,9 @@ applySizeChange.addEventListener ('click', e => {
         inputSizeChange.value = '';
 
     } else {
-    console.log(newNumber);
-    //updateGridSize(newNumber);
+    gridSize =  newNumber;
+    console.log(gridSize);
+    updateGridSize(gridSize);
     applySizeChange.toggleAttribute('disabled');
     inputSizeChange.toggleAttribute('disabled');
     inputSizeChange.value = '';
