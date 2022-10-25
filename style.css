@@ -27,11 +27,13 @@ body {
     padding: 0;
 }
 
-.grid-size-controls {
+.grid-size-controls,
+.grid-color-controls {
     margin: 20px;
     padding: 10px;
     display: flex;
     flex-direction: column;
+    align-items: center;
     border: 2px solid black;
     border-radius: 8px;
 }
@@ -50,6 +52,10 @@ body {
     margin: 10px;
 }
 
+.grid-size-change {
+    transition: 100ms;
+}
+
 .grid-size-input {
     height: 25px;
     width:  192px;
@@ -57,6 +63,25 @@ body {
 
 .activate-grid-size {
     height: 25px;
+    transition: 100ms;
+}
+
+.rainbow-mode {
+    width: 200px;
+    height: 50px;
+    margin: 10px;
+    transition: 100ms;
+}
+
+.select-color {
+    margin: 0;
+    margin-bottom: 10px;
+    font-size: 1.5rem;
+}
+
+.color-picker {
+    width: 50px;
+    height: 50px;
 }
 
 .grid-holder {
@@ -79,4 +104,12 @@ body {
     background-color: lightcoral;
     transition: ease 0.0001s all;
     
+}
+
+button:hover {
+    transform: scale(1.1);
+}
+
+button:active {
+    transform: scale(0.95);
 }
