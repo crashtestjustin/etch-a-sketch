@@ -44,8 +44,8 @@ applySizeChange.addEventListener ('click', e => {
         inputSizeChange.toggleAttribute('disabled');
         inputSizeChange.value = '';
 
-    } else if (newNumber > 64) {
-        inputRejection.textContent = "Please select a number less than 65"
+    } else if (newNumber > 100) {
+        inputRejection.textContent = "Please select a number less than 100"
         applySizeChange.toggleAttribute('disabled');
         inputSizeChange.toggleAttribute('disabled');
         inputSizeChange.value = '';
