@@ -8,7 +8,8 @@ body {
 .header {
     display: flex;
     justify-content: center;
-    margin: 40px;;
+    margin: 40px;
+    font-size: 30px;
 }
 
 .footer {
@@ -20,10 +21,10 @@ body {
 
 .grid-and-controls {
     display: flex;
-    justify-content: center;
-    margin: 0;
+    justify-content: flex-start;
+    gap: 10%;
+    margin: 0 0 0 5%;
     padding: 0;
-    gap: 100px;
 }
 
 .grid-size-controls {
@@ -32,6 +33,7 @@ body {
     display: flex;
     flex-direction: column;
     border: 2px solid black;
+    border-radius: 8px;
 }
 
 .input-rejection {
@@ -61,8 +63,8 @@ body {
     display: grid;
     /* grid-template-columns: repeat(16, 1fr);
     grid-template-rows: repeat(16, 1fr); */
-    height: 800px;
-    width: 800px;
+    height: 500px;
+    width: 500px;
     border: 1px solid black;
 }
 
