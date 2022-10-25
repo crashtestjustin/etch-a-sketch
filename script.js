@@ -1,4 +1,7 @@
 const initialSize = 16;
+const initialColor = '#000000';
+let colorMode = 'color';
+let activeColor = initialColor;
 let newGridNumber;
 let gridSize;
 
@@ -7,6 +10,8 @@ const activateSizeChange = document.querySelector('.grid-size-change');
 const applySizeChange = document.querySelector('.activate-grid-size');
 const inputSizeChange = document.querySelector('.grid-size-input');
 const inputRejection = document.querySelector('.input-rejection');
+const rainbowMode = document.querySelector('.rainbow-mode');
+const colorPicker  =document.querySelector('.color-picker');
 
 const gridHolder = document.createElement('div');
 gridHolder.classList.add('grid-holder');
@@ -23,6 +28,26 @@ for (i = 0; i < size; i++) {
         gridHolder.append(gridBlock);
     }
 }
+}
+
+//need to figure out how to apply the colour to the hover effect on the grid
+function setActiveColor (modeSelected) {
+    if (modeSelected === 'rainbow') {
+        console.log("YES!");
+    } else {
+        console.log("double Yes!");
+        activeColor = '#000000';
+    }
+}
+//setting the colour mode to determine the grid square colour above
+function setColorMode (mode) {
+    if (mode === 'rainbow') {
+        colorMode = 'rainbow';
+        setActiveColor(colorMode);
+    } else {
+        colorMode = 'color';
+        setActiveColor(colorMode);
+    }
 }
 
  function updateGridSize (newSize) {   
@@ -64,7 +89,15 @@ applySizeChange.addEventListener ('click', e => {
     inputSizeChange.toggleAttribute('disabled');
     inputSizeChange.value = '';
     }
-})
+});
+
+rainbowMode.addEventListener ('click', e => {
+    setColorMode(e.target.id);
+});
+
+colorPicker.addEventListener ('click', e => {
+    setColorMode(e.target.id);
+});
 
 window.onload = () => {
     setupGrid(initialSize);
