@@ -101,13 +101,13 @@ body {
 }
 
 .grid-block:hover {
-    background-color: lightcoral;
+    background-color: #000000;
     transition: ease 0.0001s all;
     
 }
 
 button:hover {
-    transform: scale(1.1);
+    transform: scale(1.05);
 }
 
 button:active {
