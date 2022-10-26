@@ -30,13 +30,19 @@ for (i = 0; i < size; i++) {
 }
 }
 
+
 //need to figure out how to apply the colour to the hover effect on the grid
 function setActiveColor (modeSelected) {
     if (modeSelected === 'rainbow') {
-        console.log("YES!");
+        rValue = Math.floor(Math.random() * 256);
+        gValue = Math.floor(Math.random() * 256);
+        bValue = Math.floor(Math.random() * 256);
+        activeColor = `rgb(${rValue}, ${gValue}, ${bValue})`;
+        console.log(activeColor);
+        
     } else {
-        console.log("double Yes!");
-        activeColor = '#000000';
+        activeColor = colorPicker.value;
+        console.log(activeColor);
     }
 }
 //setting the colour mode to determine the grid square colour above
@@ -82,8 +88,7 @@ applySizeChange.addEventListener ('click', e => {
         inputSizeChange.value = '';
 
     } else {
-    gridSize =  newNumber;
-    console.log(gridSize);
+    gridSize = newNumber;
     updateGridSize(gridSize);
     applySizeChange.toggleAttribute('disabled');
     inputSizeChange.toggleAttribute('disabled');
@@ -95,8 +100,8 @@ rainbowMode.addEventListener ('click', e => {
     setColorMode(e.target.id);
 });
 
-colorPicker.addEventListener ('click', e => {
-    setColorMode(e.target.id);
+colorPicker.addEventListener ('change', e => {
+    setColorMode(e.target.value);
 });
 
 window.onload = () => {
