@@ -15,15 +15,13 @@ const rainbowMode = document.querySelector('.rainbow-mode');
 const colorPicker = document.querySelector('.color-picker');
 const clearGridButton = document.querySelector('#clear');
 const masterReset = document.querySelector('#reset');
+const gridToggle = document.querySelector('.grid-toggle');
 
 const gridHolder = document.createElement('div');
 gridHolder.classList.add('grid-holder');
 container.append(gridHolder);
 
-clearGridButton.addEventListener('click', clearGrid);
-masterReset.addEventListener('click', e => {
-    window.location.reload()
-});
+
 
 function setupGrid (size) {
     gridHolder.style.gridTemplateColumns = `repeat(${size}, 1fr)`;
@@ -67,8 +65,6 @@ function setColorMode (mode) {
     } else {
         colorMode = 'color';
         activeColor = colorPicker.value;
-        console.log(activeColor);
-        console.log(colorMode);
     }
 }
 
@@ -129,10 +125,19 @@ colorPicker.addEventListener ('change', e => {
     setColorMode(e.target.value);
 });
 
+gridToggle.addEventListener('click', e =>{
+    gridBlock.classList.toggle('active');
+})
+
 function clearGrid () {
     gridHolder.innerHTML = '';
     setupGrid(initialSize);
 }
+
+clearGridButton.addEventListener('click', clearGrid);
+masterReset.addEventListener('click', e => {
+    window.location.reload()
+});
 
 window.onload = () => {
     setupGrid(initialSize);
