@@ -127,7 +127,7 @@ body {
 }
 
 .grid-block:hover {
-    background-color: #000000;
+    /* background-color: #000000; */
     transition: ease 0.0001s all;
     
 }
