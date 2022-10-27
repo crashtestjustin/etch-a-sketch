@@ -4,6 +4,7 @@ let colorMode = 'color';
 let activeColor = initialColor;
 let newGridNumber;
 let gridSize;
+let gridSquare;
 
 const container = document.querySelector('#container');
 const activateSizeChange = document.querySelector('.grid-size-change');
@@ -31,8 +32,17 @@ function setupGrid (size) {
 for (i = 0; i < size; i++) {
     for (j = 0; j < size; j++) {
         const gridBlock = document.createElement('div');
-        gridBlock.classList.add('grid-block');
+        gridSquare = gridBlock.classList.add('grid-block');
         gridHolder.append(gridBlock);
+        gridBlock.addEventListener ('mouseover', e =>{
+            if(colorMode === 'color') {
+                gridBlock.style.backgroundColor = activeColor;
+            } else if (colorMode === 'rainbow') {
+                activeColor = gridBlock.style.backgroundColor = getRandomColor();
+            } else {
+                gridBlock.style.backgroundColor = initialColor;
+            }
+        })
     }
 }
 }
@@ -42,28 +52,23 @@ function updateGridSize (newSize) {
     setupGrid(newSize);
 }
 
-//need to figure out how to apply the colour to the hover effect on the grid
-function setActiveColor (modeSelected) {
-    if (modeSelected === 'rainbow') {
-        rValue = Math.floor(Math.random() * 256);
-        gValue = Math.floor(Math.random() * 256);
-        bValue = Math.floor(Math.random() * 256);
-        activeColor = `rgb(${rValue}, ${gValue}, ${bValue})`;
-        console.log(activeColor);
-        
-    } else {
-        activeColor = colorPicker.value;
-        console.log(activeColor);
-    }
+function getRandomColor () {
+    rValue = Math.floor(Math.random() * 256);
+    gValue = Math.floor(Math.random() * 256);
+    bValue = Math.floor(Math.random() * 256);
+    let randColor = `rgb(${rValue}, ${gValue}, ${bValue})`;
+    return randColor;
 }
+
 //setting the colour mode to determine the grid square colour above
 function setColorMode (mode) {
     if (mode === 'rainbow') {
         colorMode = 'rainbow';
-        setActiveColor(colorMode);
     } else {
         colorMode = 'color';
-        setActiveColor(colorMode);
+        activeColor = colorPicker.value;
+        console.log(activeColor);
+        console.log(colorMode);
     }
 }
 
@@ -127,7 +132,6 @@ colorPicker.addEventListener ('change', e => {
 function clearGrid () {
     gridHolder.innerHTML = '';
     setupGrid(initialSize);
-    console.log('clear');
 }
 
 window.onload = () => {
