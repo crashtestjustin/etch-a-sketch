@@ -5,6 +5,29 @@ body {
     min-height: 100vh;
 }
 
+button {
+    border-radius: 10px;
+    border: none;
+    box-shadow: rgba(77, 166, 255, 0.4) 5px 5px, rgba(153, 204, 255, 0.3) 10px 10px;
+    background-color:  #0080ff;
+    color: #ffffff;
+    font-size: 14px;
+}
+
+button:disabled {
+    box-shadow: none;
+    background-color: #e6f2ff;
+}
+
+button:hover:disabled {
+    transform: none;
+}
+
+button.rainbow-mode {
+    background-color:  #ff0000;
+    box-shadow: rgb(255, 153, 0) 5px 5px, rgba(253, 228, 2, 0.767) 7px 7px, rgba(0, 255, 34, 0.689) 9px 9px, rgba(42, 162, 237, 0.788) 11px 11px, rgba(166, 0, 255, 0.513) 13px 13px;
+}
+
 .header {
     display: flex;
     justify-content: center;
@@ -21,17 +44,30 @@ body {
 
 .grid-and-controls {
     display: flex;
-    justify-content: flex-start;
+    justify-content: center;
     gap: 10%;
-    margin: 0 0 0 5%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 50px;;
     padding: 0;
+}
+
+.placeholder-div {
+    margin-left: auto;
+}
+
+.grid-controls {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 0px;
 }
 
 .grid-size-controls,
 .grid-color-controls,
 .grid-mod {
-    margin: 20px;
-    padding: 10px;
+    margin: 10px;
+    padding: 30px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -70,60 +106,55 @@ body {
 .rainbow-mode {
     width: 200px;
     height: 50px;
-    margin: 10px;
+    margin: 10px 10px 20px 10px;
     transition: 100ms;
 }
 
 .select-color {
+    text-decoration: underline;
     margin: 0;
-    margin-bottom: 10px;
-    font-size: 1.5rem;
+    font-size: 1.0rem;
+}
+
+.color-picker-mode {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
 }
 
 .color-picker {
     width: 50px;
     height: 50px;
+    border: none;
+    background: none;
 }
 
-.clear-and-border {
+.grid-mod {
+    display: flex;
     flex-direction: row;
-    justify-content: space-around;
+    justify-content: center;
+    gap: 10px;
 }
 
-.clear,
-.grid-toggle {
+.clear, 
+.reset {
     width: 100px;
     height: 30px;
 }
 
-.reset-button {
-    margin-top: 10px;
-}
-
-.reset {
-    width: 204px;
-    height: 30px;
-}
-
 .container {
-    display: flex;
-    align-items: center;
+    flex: 3;
 }
 
 .grid-holder {
     display: grid;
-    height: 500px;
-    width: 500px;
+    height: 600px;
+    width: 600px;
     border: 1px solid black;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 
 .grid-block {
-    border: 1px solid black;
-    transition: ease 4s all;
-}
-
-.grid-block_nogrid {
     border: 1px solid black;
     transition: ease 4s all;
 }
@@ -138,5 +169,13 @@ button:hover {
 }
 
 button:active {
+    transform: scale(0.95);
+}
+
+input.color-picker:hover {
+    transform: scale(1.05);
+}
+
+input.color-picker:active {
     transform: scale(0.95);
 }
