@@ -15,12 +15,10 @@ const rainbowMode = document.querySelector('.rainbow-mode');
 const colorPicker = document.querySelector('.color-picker');
 const clearGridButton = document.querySelector('#clear');
 const masterReset = document.querySelector('#reset');
-const gridToggle = document.querySelector('.grid-toggle');
 
 const gridHolder = document.createElement('div');
 gridHolder.classList.add('grid-holder');
 container.append(gridHolder);
-
 
 
 function setupGrid (size) {
@@ -124,10 +122,6 @@ rainbowMode.addEventListener ('click', e => {
 colorPicker.addEventListener ('change', e => {
     setColorMode(e.target.value);
 });
-
-gridToggle.addEventListener('click', e =>{
-    gridBlock.classList.toggle('active');
-})
 
 function clearGrid () {
     gridHolder.innerHTML = '';
