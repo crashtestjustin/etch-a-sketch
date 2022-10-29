@@ -89,6 +89,10 @@ button.rainbow-mode {
     margin: 10px;
 }
 
+input:disabled {
+    background-color: rgba(255, 255, 255, 0.15); 
+}
+
 .grid-size-change {
     transition: 100ms;
 }
