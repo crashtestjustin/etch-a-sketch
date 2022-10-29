@@ -35,20 +35,14 @@ button.rainbow-mode {
     font-size: 30px;
 }
 
-.footer {
-    height: 100px;
-    text-align: center;
-    margin-top: auto;
-    background-color: cornflowerblue;
-}
-
 .grid-and-controls {
     display: flex;
     justify-content: center;
     gap: 10%;
     margin-left: auto;
     margin-right: auto;
-    margin-top: 50px;;
+    margin-top: 50px;
+    margin-bottom: 50px;
     padding: 0;
 }
 
@@ -89,9 +83,9 @@ button.rainbow-mode {
     margin: 10px;
 }
 
-input:disabled {
-    background-color: rgba(255, 255, 255, 0.15); 
-}
+/* input:focus::placeholder {
+    color: transparent;
+} */
 
 .grid-size-change {
     transition: 100ms;
@@ -182,4 +176,29 @@ input.color-picker:hover {
 
 input.color-picker:active {
     transform: scale(0.95);
+}
+
+.footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100px;
+    margin-top: auto;
+    gap: 20px;
+    background-color: #cccccc;
+}
+
+.icon-and-year {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.github-link {
+    color: inherit;
+    text-decoration: none;
+}
+
+.github-link:hover {
+    text-decoration: underline;
 }
