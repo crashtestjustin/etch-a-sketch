@@ -10,6 +10,7 @@ const container = document.querySelector('#container');
 const activateSizeChange = document.querySelector('.grid-size-change');
 const applySizeChange = document.querySelector('.activate-grid-size');
 const inputSizeChange = document.querySelector('.grid-size-input');
+const placeholderText = document.querySelector('.grid-size-input').placeholder;
 const inputRejection = document.querySelector('.input-rejection');
 const rainbowMode = document.querySelector('.rainbow-mode');
 const colorPicker = document.querySelector('.color-picker');
@@ -98,12 +99,14 @@ function computeNewValue (newGridNumber) {
 activateSizeChange.addEventListener ('click', e => {
     applySizeChange.removeAttribute('disabled');
     inputSizeChange.removeAttribute('disabled');
+    inputSizeChange.toggleAttribute('placeholder');
     inputRejection.textContent = '';
 })
 
 applySizeChange.addEventListener ('click', e => {
     var newNumber = parseInt(inputSizeChange.value);
     computeNewValue(newNumber);
+    // placeholderText.toggleAttribute('placeholder');
 });
 
 inputSizeChange.addEventListener ('keypress', e => {
