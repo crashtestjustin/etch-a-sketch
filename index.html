@@ -19,15 +19,20 @@
                     <h4 class="select-color">Modify the Grid</h4>
                     <button class="grid-size-change">Activate Grid Size Changer</button>
                     <div class="input-rejection"></div>
-                    <input class="grid-size-input" placeholder="Activate grid change first" disabled>
+                    <input name="input-number" class="grid-size-input" placeholder="Activate grid change first" disabled>
                     <button class="activate-grid-size" disabled>Update Grid</button>
                 </div>
                 <div class="grid-color-controls">
-                    <h4 class="select-color">Select a Color Mode</h4>
-                    <button class="rainbow-mode" id="rainbow">Activate Rainbow</button>
-                    <div class="color-picker-mode">
-                        <a class="color-picker-title">Color Picker</a>
-                        <input type="color" class="color-picker" id="color" value="#000000">
+                        <h4 class="select-color">Select a Color Mode</h4>
+                        <button class="rainbow-mode" id="rainbow">Activate Rainbow</button>
+                    <div class="color-controls-and-shading">
+                        <div class="color-picker-mode">
+                            <a class="color-picker-title">Color Picker</a>
+                            <input type="color" class="color-picker" id="color" value="#000000">
+                        </div>
+                        <div class="shading-div">
+                            <button class="shading-button" id="shading">Shading Mode</button>
+                        </div>
                     </div>
                 </div>
                 <div class="grid-mod">
