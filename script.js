@@ -16,6 +16,7 @@ const rainbowMode = document.querySelector('.rainbow-mode');
 const colorPicker = document.querySelector('.color-picker');
 const clearGridButton = document.querySelector('#clear');
 const masterReset = document.querySelector('#reset');
+const shadingButton = document.querySelector('.shading-button');
 
 const gridHolder = document.createElement('div');
 gridHolder.classList.add('grid-holder');
@@ -36,6 +37,8 @@ for (i = 0; i < size; i++) {
                 gridBlock.style.backgroundColor = activeColor;
             } else if (colorMode === 'rainbow') {
                 activeColor = gridBlock.style.backgroundColor = getRandomColor();
+            } else if (colorMode === 'shading') {
+                activeColor = gridBlock.style.backgroundColor = shadingColor();
             } else {
                 gridBlock.style.backgroundColor = initialColor;
             }
@@ -61,10 +64,17 @@ function getRandomColor () {
 function setColorMode (mode) {
     if (mode === 'rainbow') {
         colorMode = 'rainbow';
+    } else if (mode === 'shading') { 
+        colorMode = 'shading';
+        console.log(colorMode);
     } else {
         colorMode = 'color';
         activeColor = colorPicker.value;
     }
+}
+
+function shadingColor () {
+    return "#000000"   
 }
 
 function computeNewValue (newGridNumber) {
@@ -106,13 +116,14 @@ activateSizeChange.addEventListener ('click', e => {
 applySizeChange.addEventListener ('click', e => {
     var newNumber = parseInt(inputSizeChange.value);
     computeNewValue(newNumber);
-    // placeholderText.toggleAttribute('placeholder');
+    document.getElementsByName('input-number')[0].placeholder='Activate grid change first';
 });
 
 inputSizeChange.addEventListener ('keypress', e => {
     if (e.key === 'Enter') {
         var newNumber = parseInt(inputSizeChange.value);
         computeNewValue(newNumber);
+        document.getElementsByName('input-number')[0].placeholder='Activate grid change first';
     } else {
         return
     }
@@ -125,6 +136,10 @@ rainbowMode.addEventListener ('click', e => {
 colorPicker.addEventListener ('change', e => {
     setColorMode(e.target.value);
 });
+
+shadingButton.addEventListener('click', e => {
+    setColorMode(e.target.id);
+})
 
 function clearGrid () {
     gridHolder.innerHTML = '';
