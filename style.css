@@ -81,6 +81,7 @@ button.rainbow-mode {
     color: red;
     font-size: 15px;
     font-weight: 700;
+    text-align: center;
 }
 
 .grid-size-change,
