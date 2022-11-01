@@ -142,11 +142,15 @@ button.rainbow-mode {
     display: flex;
     flex-direction: row;
     justify-content: center;
-    gap: 10px;
+    gap: 20px;
 }
 
 .clear, 
-.reset {
+.reset,
+.eraser-button,
+.grid-toggle-button {
+    margin-top: 10px;
+    margin-bottom: 10px;
     width: 100px;
     height: 30px;
 }
@@ -163,9 +167,9 @@ button.rainbow-mode {
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 
-.grid-block {
+.grid-block-lines {
     border: 1px solid black;
-    transition: ease 4s all;
+    /* transition: ease 4s all; */
 }
 
 .grid-block:hover {
