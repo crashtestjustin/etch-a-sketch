@@ -121,13 +121,13 @@ function computeNewValue (newGridNumber) {
         inputSizeChange.value = '';
 
     } else if (newGridNumber > 100) {
-        inputRejection.textContent = "Please select a number less than 100"
+        inputRejection.textContent = "Please select a number less than 101."
         applySizeChange.toggleAttribute('disabled');
         inputSizeChange.toggleAttribute('disabled');
         inputSizeChange.value = '';
 
     } else if (newGridNumber < 1) {
-        inputRejection.textContent = "Please select a number greater than 0"
+        inputRejection.textContent = "Please select a number greater than 0."
         applySizeChange.toggleAttribute('disabled');
         inputSizeChange.toggleAttribute('disabled');
         inputSizeChange.value = '';
