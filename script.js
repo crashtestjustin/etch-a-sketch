@@ -5,6 +5,10 @@ let activeColor = initialColor;
 let newGridNumber;
 let gridSize;
 let gridSquare;
+let initialLight = 100;
+let targetLight = 0;
+let gridId = 0;
+let identifier;
 
 const container = document.querySelector('#container');
 const activateSizeChange = document.querySelector('.grid-size-change');
@@ -17,6 +21,8 @@ const colorPicker = document.querySelector('.color-picker');
 const clearGridButton = document.querySelector('#clear');
 const masterReset = document.querySelector('#reset');
 const shadingButton = document.querySelector('.shading-button');
+const eraserButton = document.querySelector('.eraser-button');
+const gridToggler = document.querySelector('.grid-toggle-button');
 
 const gridHolder = document.createElement('div');
 gridHolder.classList.add('grid-holder');
@@ -30,15 +36,25 @@ function setupGrid (size) {
 for (i = 0; i < size; i++) {
     for (j = 0; j < size; j++) {
         const gridBlock = document.createElement('div');
-        gridSquare = gridBlock.classList.add('grid-block');
+        gridSquare = gridBlock.classList.add('grid-block-lines');
+        identifier = gridBlock.classList.add(`grid-block${j+gridId}`);
+        gridId++;
         gridHolder.append(gridBlock);
+        gridBlock.dataset.customVariable = 0;
+        gridToggler.addEventListener('click', e => {
+            gridBlock.classList.toggle('grid-block-lines');
+        });
         gridBlock.addEventListener ('mouseover', e =>{
             if(colorMode === 'color') {
                 gridBlock.style.backgroundColor = activeColor;
             } else if (colorMode === 'rainbow') {
                 activeColor = gridBlock.style.backgroundColor = getRandomColor();
             } else if (colorMode === 'shading') {
-                activeColor = gridBlock.style.backgroundColor = shadingColor();
+                activeColor = e.target.style.backgroundColor = shadingColor(e.target);
+                gridBlock.dataset.customVariable++;
+            } else if (colorMode === 'eraser') {
+                activeColor = gridBlock.style.backgroundColor = eraserMode();
+                gridBlock.dataset.customVariable = 0;
             } else {
                 gridBlock.style.backgroundColor = initialColor;
             }
@@ -66,15 +82,35 @@ function setColorMode (mode) {
         colorMode = 'rainbow';
     } else if (mode === 'shading') { 
         colorMode = 'shading';
-        console.log(colorMode);
+    } else if (mode === 'eraser') {
+        colorMode = 'eraser';
     } else {
         colorMode = 'color';
         activeColor = colorPicker.value;
     }
 }
 
-function shadingColor () {
-    return "#000000"   
+function shadingColor (e) {
+    let lArray = [90, 80, 70, 60, 50, 40, 30, 20, 10, 0];
+    hValue = 0;
+    sValue = 0;
+    if (e.dataset.customVariable < lArray.length) {
+        let shadingAmt = `hsl(${hValue}, ${sValue}%, ${lArray[e.dataset.customVariable]}%)`;
+        return shadingAmt; 
+    } else {
+        return;
+    }   
+}
+
+function clearGrid () {
+    gridHolder.innerHTML = '';
+    setupGrid(initialSize);
+}
+
+function eraserMode () {
+
+    let shadingAmt = `hsl(${0}, ${0}%, ${100}%)`;
+        return shadingAmt; 
 }
 
 function computeNewValue (newGridNumber) {
@@ -115,6 +151,7 @@ activateSizeChange.addEventListener ('click', e => {
 
 applySizeChange.addEventListener ('click', e => {
     var newNumber = parseInt(inputSizeChange.value);
+    gridId = 0;
     computeNewValue(newNumber);
     document.getElementsByName('input-number')[0].placeholder='Activate grid change first';
 });
@@ -122,6 +159,7 @@ applySizeChange.addEventListener ('click', e => {
 inputSizeChange.addEventListener ('keypress', e => {
     if (e.key === 'Enter') {
         var newNumber = parseInt(inputSizeChange.value);
+        gridId = 0;
         computeNewValue(newNumber);
         document.getElementsByName('input-number')[0].placeholder='Activate grid change first';
     } else {
@@ -139,14 +177,14 @@ colorPicker.addEventListener ('change', e => {
 
 shadingButton.addEventListener('click', e => {
     setColorMode(e.target.id);
-})
+});
 
-function clearGrid () {
-    gridHolder.innerHTML = '';
-    setupGrid(initialSize);
-}
+eraserButton.addEventListener('click', e => {
+    setColorMode(e.target.id);
+});
 
 clearGridButton.addEventListener('click', clearGrid);
+
 masterReset.addEventListener('click', e => {
     window.location.reload()
 });
