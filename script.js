@@ -9,6 +9,10 @@ let initialLight = 100;
 let targetLight = 0;
 let gridId = 0;
 let identifier;
+const intiialHue = 0;
+let hueValue = intiialHue;
+const initialSaturation = 0;
+let saturationValue = initialSaturation;
 
 const container = document.querySelector('#container');
 const activateSizeChange = document.querySelector('.grid-size-change');
@@ -90,10 +94,40 @@ function setColorMode (mode) {
     }
 }
 
+function hexToHSL(hex) {
+    var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+      r = parseInt(result[1], 16);
+      g = parseInt(result[2], 16);
+      b = parseInt(result[3], 16);
+      r /= 255, g /= 255, b /= 255;
+      var max = Math.max(r, g, b), min = Math.min(r, g, b);
+      var h, s, l = (max + min) / 2;
+      if(max == min){
+        h = s = 0; // achromatic
+      }else{
+        var d = max - min;
+        s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
+        switch(max){
+          case r: h = (g - b) / d + (g < b ? 6 : 0); break;
+          case g: h = (b - r) / d + 2; break;
+          case b: h = (r - g) / d + 4; break;
+        }
+        h /= 6;
+      }
+      s = s*100;
+      s = Math.round(s);
+      l = l*100;
+      l = Math.round(l);
+      h = Math.round(360*h);
+      hueValue = h;
+      saturationValue = s;
+      console.log(h, s, l);
+  }
+
 function shadingColor (e) {
     let lArray = [90, 80, 70, 60, 50, 40, 30, 20, 10, 0];
-    hValue = 0;
-    sValue = 0;
+    hValue = hueValue;
+    sValue = saturationValue;
     if (e.dataset.customVariable < lArray.length) {
         let shadingAmt = `hsl(${hValue}, ${sValue}%, ${lArray[e.dataset.customVariable]}%)`;
         return shadingAmt; 
@@ -108,7 +142,6 @@ function clearGrid () {
 }
 
 function eraserMode () {
-
     let shadingAmt = `hsl(${0}, ${0}%, ${100}%)`;
         return shadingAmt; 
 }
@@ -172,7 +205,10 @@ rainbowMode.addEventListener ('click', e => {
 });
 
 colorPicker.addEventListener ('change', e => {
-    setColorMode(e.target.value);
+    setColorMode(e.target.id);
+    hexToHSL(e.target.value);
+    shadingButton.classList.toggle('button-background-image');
+    shadingButton.style.backgroundColor = e.target.value;
 });
 
 shadingButton.addEventListener('click', e => {
