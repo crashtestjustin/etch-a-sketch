@@ -4,15 +4,13 @@ let colorMode = 'color';
 let activeColor = initialColor;
 let newGridNumber;
 let gridSize;
-let gridSquare;
-let initialLight = 100;
-let targetLight = 0;
 let gridId = 0;
-let identifier;
 const intiialHue = 0;
 let hueValue = intiialHue;
 const initialSaturation = 0;
 let saturationValue = initialSaturation;
+const initialLight = 50;
+let lightValue = initialLight;
 
 const container = document.querySelector('#container');
 const activateSizeChange = document.querySelector('.grid-size-change');
@@ -25,6 +23,7 @@ const colorPicker = document.querySelector('.color-picker');
 const clearGridButton = document.querySelector('#clear');
 const masterReset = document.querySelector('#reset');
 const shadingButton = document.querySelector('.shading-button');
+const shadingButtonActive = document.querySelector('.shading-active');
 const eraserButton = document.querySelector('.eraser-button');
 const gridToggler = document.querySelector('.grid-toggle-button');
 
@@ -40,8 +39,8 @@ function setupGrid (size) {
 for (i = 0; i < size; i++) {
     for (j = 0; j < size; j++) {
         const gridBlock = document.createElement('div');
-        gridSquare = gridBlock.classList.add('grid-block-lines');
-        identifier = gridBlock.classList.add(`grid-block${j+gridId}`);
+        gridBlock.classList.add('grid-block-lines');
+        gridBlock.classList.add(`grid-block${j+gridId}`);
         gridId++;
         gridHolder.append(gridBlock);
         gridBlock.dataset.customVariable = 0;
@@ -121,7 +120,7 @@ function hexToHSL(hex) {
       h = Math.round(360*h);
       hueValue = h;
       saturationValue = s;
-      console.log(h, s, l);
+      lightValue = l;
   }
 
 function shadingColor (e) {
@@ -194,7 +193,7 @@ inputSizeChange.addEventListener ('keypress', e => {
         var newNumber = parseInt(inputSizeChange.value);
         gridId = 0;
         computeNewValue(newNumber);
-        document.getElementsByName('input-number')[0].placeholder='Activate grid change first';
+        document.getElementsByName('input-number')[0].placeholder='Activate grid changer first';
     } else {
         return
     }
@@ -207,12 +206,19 @@ rainbowMode.addEventListener ('click', e => {
 colorPicker.addEventListener ('change', e => {
     setColorMode(e.target.id);
     hexToHSL(e.target.value);
-    shadingButton.classList.toggle('button-background-image');
+    console.log(activeColor);
+    shadingButton.classList.remove('button-background-image');
     shadingButton.style.backgroundColor = e.target.value;
 });
 
 shadingButton.addEventListener('click', e => {
-    setColorMode(e.target.id);
+    if (colorMode !== 'shading') {
+        setColorMode(e.target.id);
+        shadingButtonActive.style.color = '#000000';
+    } else {
+        setColorMode("color");
+        shadingButtonActive.style.color = '#ffffff';
+    }
 });
 
 eraserButton.addEventListener('click', e => {
