@@ -9,10 +9,11 @@ body {
 button {
     border-radius: 25px;
     border: none;
-    box-shadow: rgba(93, 128, 162, 0.4) 5px 5px, rgba(93, 128, 162, 0.3) 10px 10px;
+    box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
     background-color:  #5d80a2;
     color: #ffffff;
     font-size: 14px;
+    cursor: pointer;
 }
 
 button:disabled {
@@ -142,10 +143,19 @@ button.rainbow-mode {
     background: none;
 }
 
+.color-picker-title,
+.shading-active {
+    margin-bottom: 10px;
+    text-decoration: underline;
+}
+
+.shading-active {
+    color: #ffffff;
+}
+
 .shading-button {
     width: 100px;
     height: 50px;
-    box-shadow: rgba(77, 77, 77, 0.4) 5px 5px, rgba(77, 77, 77, 0.3) 10px 10px;
 }
 
 .button-background-image {
